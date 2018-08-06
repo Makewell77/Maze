@@ -1,0 +1,36 @@
+pathWidth = 10      //Width of Maze Path
+
+wall = 2           //Width of the walls between paths
+
+outerWall = 2     //Width of outer walls
+
+width = 25        //Number of paths horizontally
+
+height = 24       //Number of paths vertically
+
+delay = 1        //Delay between cycles 
+
+x = width/2|0    //horizontal starting position
+
+y = height/2|0   //verticle starting position
+
+seed = Math.random()*100000|0 //random #'s
+
+wallColor = '#d24'  //wall color
+pathColor = '#222a33' //color for the path
+
+randomGen = function(seed){
+if(seed===undefined)var seed=performance.now()
+return function(){
+  seed = (seed * 9301 + 49297) % 233280
+  return seed/233280
+ }
+}
+init = function(){
+  offset = pathWidth/2+outerWall
+  map = []
+  canvas = document.queryselector('canvas')
+  ctx = canvas.getContext('2d')
+  canvas.width = outerWall*2+width*(pathWidth+wall)-wall
+  canvas.height = outerWall*2+width*(pathHeight+wall)-wall
+  
